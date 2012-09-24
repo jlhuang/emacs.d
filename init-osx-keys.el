@@ -1,6 +1,8 @@
 (when *is-a-mac*
-  (setq mac-command-modifier 'meta)
-  (setq mac-option-modifier 'none)
+  ;(setq mac-command-modifier 'meta)
+  ;(setq mac-option-modifier 'none)
+  (setq mac-command-modifier 'none)
+  (setq mac-option-modifier 'meta)
   (setq default-input-method "MacOSX")
   ;; Make mouse wheel / trackpad scrolling less jerky
   (setq mouse-wheel-scroll-amount '(0.001))
@@ -11,8 +13,9 @@
     (eval-after-load 'nxml-mode
       '(define-key nxml-mode-map (kbd "M-h") nil))
     (global-set-key (kbd "M-ˍ") 'ns-do-hide-others) ;; what describe-key reports
-    (global-set-key (kbd "M-c") 'ns-copy-including-secondary)
-    (global-set-key (kbd "M-v") 'ns-paste-secondary)))
+    ;(global-set-key (kbd "M-c") 'ns-copy-including-secondary)
+    ;(global-set-key (kbd "M-v") 'ns-paste-secondary)
+    ))
 
 
 (provide 'init-osx-keys)

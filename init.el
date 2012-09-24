@@ -102,5 +102,6 @@
 
 
 ;; Local Variables:
+(setq gdb-non-stop-setting nil)
 ;; no-byte-compile: t
 ;; End:
