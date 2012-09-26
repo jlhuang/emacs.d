@@ -24,3 +24,11 @@ environments too, with any Emacs version >= 23. If not, please file an
 issue on the github project: https://github.com/purcell/emacs.d
 
 -Steve Purcell
+
+-----------------------------------------------------------------------
+
+this is my emacs configuration tree that depands on Steve Purcell.
+
+auto complete for c++ is added using auto-complete-clang.
+
+-jlhuang
