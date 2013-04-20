@@ -47,8 +47,10 @@ ignored: use `custom-enabled-themes' instead."
   (dolist (theme custom-enabled-themes)
     (unless (custom-theme-p theme)
       (load-theme theme)
-      (message "Consider using 'M-x customize-themes' to save your preferred theme.")))
-  (custom-set-variables `(custom-enabled-themes ,custom-enabled-themes)))
+;;      (message "Consider using 'M-x customize-themes' to save your preferred theme.")
+      ))
+;;  (custom-set-variables `(custom-enabled-themes ,custom-enabled-themes))
+  (custom-set-variables `(custom-enabled-themes , (quote custom-enabled-themes))))
 
 (add-hook 'after-init-hook 'reapply-themes)
 

@@ -34,6 +34,7 @@
 (require 'init-ido)
 (require 'init-hippie-expand)
 (require 'init-auto-complete)
+(require 'init-yasnippet)       ;;add the init yasnippet
 (require 'init-windows)
 (require 'init-sessions)
 (require 'init-fonts)
@@ -85,8 +86,11 @@
 ;;----------------------------------------------------------------------------
 ;; Variables configured via the interactive 'customize' interface
 ;;----------------------------------------------------------------------------
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file)
+(if (file-readable-p (expand-file-name "~/.emacs.d/custom.el"))
+     (load-file (expand-file-name "~/.emacs.d/custom.el"))
+       nil)
+;;(setq custom-file "~/.emacs.d/custom.el")
+;;(load custom-file)
 
 
 ;;----------------------------------------------------------------------------
@@ -101,7 +105,30 @@
 (require 'init-locales)
 
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" default)))
+ '(session-use-package t nil (session)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+(setq display-time-day-and-date t
+display-time-24hr-format t)
+(display-time)
+
 ;; Local Variables:
 (setq gdb-non-stop-setting nil)
-;; no-byte-compile: t
-;; End:
+
+;; rebinding the cua-set-rectangle-mark to C-c m
+(global-set-key (kbd "C-c m") 'cua-set-rectangle-mark)
+
+;;get emacs to recognize my bash alias
+;;(setq shell-file-name "/bin/bash")
+(setq shell-command-switch "-ic")
