@@ -1,3 +1,6 @@
+;; Enable flymake-mode for C++ files.
+(add-hook 'c++-mode-hook 'flymake-mode)
+
 (setq flymake-gui-warnings-enabled nil)
 
 ;; Stop flymake from breaking when ruby-mode is invoked by mmm-mode,
@@ -6,37 +9,28 @@
   '(progn
      (require 'flymake-cursor)
 
-     (global-set-key (kbd "C-`") 'flymake-goto-next-error)
+     (global-set-key (kbd "C-c f") 'flymake-goto-next-error)
 
      (defun flymake-can-syntax-check-file (file-name)
        "Determine whether we can syntax check FILE-NAME.
-Return nil if we cannot, non-nil if we can."
-       (if (and file-name (flymake-get-init-function file-name)) t nil))))
+        Return nil if we cannot, non-nil if we can."
+       (if (and file-name (flymake-get-init-function file-name)) t nil))
 
+       (defun flymake-cc-init ()
+         (let* (;; Create temp file which is copy of current file
+               (temp-file   (flymake-init-create-temp-buffer-copy 'flymake-create-temp-inplace))
+                ;; Get relative path of temp file from current directory
+               (local-file  (file-relative-name temp-file (file-name-directory buffer-file-name))))
 
-;; http://nschum.de/src/emacs/fringe-helper/
-(eval-after-load 'flymake
-  '(progn
-     (require 'fringe-helper)
+               ;; Construct compile command which is defined list.
+               ;; First element is program name, "g++" in this case.
+               ;; Second element is list of options.
+               ;; So this means "g++ -Wall -Wextra -fsyntax-only tempfile-path"
+               (list "g++" (list "-Wall" "-Wextra" "-fsyntax-only" local-file))))
 
-     (defvar flymake-fringe-overlays nil)
-     (make-variable-buffer-local 'flymake-fringe-overlays)
-
-     (defadvice flymake-make-overlay (after add-to-fringe first
-                                            (beg end tooltip-text face mouse-face)
-                                            activate compile)
-       (push (fringe-helper-insert-region
-              beg end
-              (fringe-lib-load (if (eq face 'flymake-errline)
-                                   fringe-lib-exclamation-mark
-                                 fringe-lib-question-mark))
-              'left-fringe 'font-lock-warning-face)
-             flymake-fringe-overlays))
-
-     (defadvice flymake-delete-own-overlays (after remove-from-fringe activate
-                                                   compile)
-       (mapc 'fringe-helper-remove flymake-fringe-overlays)
-       (setq flymake-fringe-overlays nil))))
-
+     ;; Enable above flymake setting for C++ files(suffix is '.cpp')
+     (push '("\\.cpp$" flymake-cc-init) flymake-allowed-file-name-masks)
+     )
+  )
 
 (provide 'init-flymake)

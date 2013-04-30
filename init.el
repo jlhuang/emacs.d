@@ -4,7 +4,7 @@
 ;;----------------------------------------------------------------------------
 ;; Which functionality to enable (use t or nil for true and false)
 ;;----------------------------------------------------------------------------
-(setq *spell-check-support-enabled* nil)
+(setq *spell-check-support-enabled* t)
 (setq *is-a-mac* (eq system-type 'darwin))
 (setq *is-carbon-emacs* (and *is-a-mac* (eq window-system 'mac)))
 (setq *is-cocoa-emacs* (and *is-a-mac* (eq window-system 'ns)))
@@ -69,7 +69,7 @@
 (require 'init-common-lisp)
 
 (when *spell-check-support-enabled*
-  (require 'init-spelling))
+  (require 'init-flyspell))
 
 (require 'init-marmalade)
 (require 'init-misc)
@@ -132,3 +132,10 @@ display-time-24hr-format t)
 ;;get emacs to recognize my bash alias
 ;;(setq shell-file-name "/bin/bash")
 (setq shell-command-switch "-ic")
+
+;;add the linum mode
+(if (fboundp 'prog-mode)
+        (add-hook 'prog-mode-hook '(lambda () (linum-mode t))))
+
+;; make whitespace-mode use just basic coloring
+(setq whitespace-style (quote (spaces tabs newline space-mark tab-mark newline-mark)))
