@@ -1,5 +1,7 @@
 ;; -*- coding: utf-8 -*-
-(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
+;(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
+(add-to-list 'load-path user-emacs-directory)
+(require 'init-benchmarking) ;;Measure startup time
 
 ;;----------------------------------------------------------------------------
 ;; Which functionality to enable (use t or nil for true and false)
@@ -74,7 +76,6 @@
 (require 'init-marmalade)
 (require 'init-misc)
 
-
 ;;----------------------------------------------------------------------------
 ;; Allow access from emacsclient
 ;;----------------------------------------------------------------------------
@@ -86,12 +87,9 @@
 ;;----------------------------------------------------------------------------
 ;; Variables configured via the interactive 'customize' interface
 ;;----------------------------------------------------------------------------
-(if (file-readable-p (expand-file-name "~/.emacs.d/custom.el"))
-     (load-file (expand-file-name "~/.emacs.d/custom.el"))
-       nil)
-;;(setq custom-file "~/.emacs.d/custom.el")
-;;(load custom-file)
-
+(setq custom-file (expand-file-name "init-custom.el" user-emacs-directory))
+(when (file-exists-p custom-file)
+  (load custom-file))
 
 ;;----------------------------------------------------------------------------
 ;; Allow users to provide an optional "init-local" containing personal settings
@@ -104,23 +102,15 @@
 ;;----------------------------------------------------------------------------
 (require 'init-locales)
 
+;;----------------------------------------------------------------------------
+;; these are my settings for emacs
+;;----------------------------------------------------------------------------
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" default)))
- '(session-use-package t nil (session)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
-(setq display-time-day-and-date t
-display-time-24hr-format t)
+;; Mode bar preferences
+(setq display-time-day-and-date t            ; display the day and date in the mode line
+      display-time-24hr-format t             ; use 24hr format
+      ;display-time-interval 10               ; redisplay every ten seconds
+      display-time-default-load-average nil) ; don't display the system load average
 (display-time)
 
 ;; Local Variables:
@@ -137,5 +127,16 @@ display-time-24hr-format t)
 (if (fboundp 'prog-mode)
         (add-hook 'prog-mode-hook '(lambda () (linum-mode t))))
 
-;; make whitespace-mode use just basic coloring
-(setq whitespace-style (quote (spaces tabs newline space-mark tab-mark newline-mark)))
+;;do not display the menu bar
+(menu-bar-mode -1)
+
+;;highlight current line
+(global-hl-line-mode t)
+
+;;suppress the error message "ls does not support --dired"
+(setq dired-use-ls-dired nil)
+
+;;set fill column to 80
+(setq-default fill-column 80)
+;;turn on auto-fill mode to all text buffers
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
