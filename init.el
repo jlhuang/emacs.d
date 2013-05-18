@@ -106,11 +106,14 @@
 ;; these are my settings for emacs
 ;;----------------------------------------------------------------------------
 
-;; Mode bar preferences
-(setq display-time-day-and-date t            ; display the day and date in the mode line
-      display-time-24hr-format t             ; use 24hr format
-      ;display-time-interval 10               ; redisplay every ten seconds
-      display-time-default-load-average nil) ; don't display the system load average
+;; Mode line preferences
+(setq
+;; display the day and date in the mode line
+      display-time-day-and-date t
+;; use 24hr format
+      display-time-24hr-format t
+;; don't display the system load average
+      display-time-default-load-average nil)
 (display-time)
 
 ;; Local Variables:
@@ -138,5 +141,14 @@
 
 ;;set fill column to 80
 (setq-default fill-column 80)
-;;turn on auto-fill mode to all text buffers
+;;turn on auto-fill mode to all text and prog buffers
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
+(add-hook 'prog-mode-hook 'turn-on-auto-fill)
+
+ ;; customize the mode line format(do not display minor mode name in mode line)
+ (setq-default mode-line-format
+       '("%e" mode-line-front-space mode-line-mule-info mode-line-client
+             mode-line-modified mode-line-remote mode-line-frame-identification
+             mode-line-buffer-identification "   " mode-line-position
+             vc-mode "   " mode-name "   " mode-line-misc-info
+             mode-line-end-spaces))
