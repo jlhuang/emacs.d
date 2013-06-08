@@ -15,7 +15,7 @@
                (lambda ()
                  (define-key dired-mode-map (kbd "^")
                    (lambda () (interactive) (find-alternate-file "..")))
-                 (define-key dired-mode-map (kbd "o") 'emacs-dired-open-file-in-external-app) 
+                 (define-key dired-mode-map (kbd "o") 'emacs-dired-open-file-in-external-app)
                  ))))
 
 (provide 'init-dired)

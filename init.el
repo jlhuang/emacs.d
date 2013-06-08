@@ -145,10 +145,14 @@
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'prog-mode-hook 'turn-on-auto-fill)
 
- ;; customize the mode line format(do not display minor mode name in mode line)
+;; customize the mode line format(do not display minor mode name in mode line)
  (setq-default mode-line-format
        '("%e" mode-line-front-space mode-line-mule-info mode-line-client
              mode-line-modified mode-line-remote mode-line-frame-identification
              mode-line-buffer-identification "   " mode-line-position
              vc-mode "   " mode-name "   " mode-line-misc-info
              mode-line-end-spaces))
+
+;; unset the key C-x f to avoid the trouble when using C-x C-f to open a file
+;; inappropriate
+(global-unset-key (kbd "\C-xf"))
