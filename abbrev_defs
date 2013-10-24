@@ -31,6 +31,8 @@
 
 (define-abbrev-table 'display-time-world-mode-abbrev-table '())
 
+(define-abbrev-table 'emacs-lisp-byte-code-mode-abbrev-table '())
+
 (define-abbrev-table 'emacs-lisp-mode-abbrev-table '())
 
 (define-abbrev-table 'ert-results-mode-abbrev-table '())
@@ -41,11 +43,19 @@
 
 (define-abbrev-table 'fundamental-mode-abbrev-table '())
 
+(define-abbrev-table 'gdb-script-mode-abbrev-table '())
+
 (define-abbrev-table 'gfm-mode-abbrev-table '())
+
+(define-abbrev-table 'git-commit-mode-abbrev-table '())
+
+(define-abbrev-table 'git-rebase-mode-abbrev-table '())
 
 (define-abbrev-table 'global-abbrev-table '())
 
 (define-abbrev-table 'grep-mode-abbrev-table '())
+
+(define-abbrev-table 'gud-mode-abbrev-table '())
 
 (define-abbrev-table 'haskell-cabal-mode-abbrev-table '())
 
@@ -73,6 +83,8 @@
 
 (define-abbrev-table 'magit-branch-manager-mode-abbrev-table '())
 
+(define-abbrev-table 'magit-cherry-mode-abbrev-table '())
+
 (define-abbrev-table 'magit-commit-mode-abbrev-table '())
 
 (define-abbrev-table 'magit-diff-mode-abbrev-table '())
@@ -80,6 +92,8 @@
 (define-abbrev-table 'magit-log-edit-mode-abbrev-table '())
 
 (define-abbrev-table 'magit-log-mode-abbrev-table '())
+
+(define-abbrev-table 'magit-mode-abbrev-table '())
 
 (define-abbrev-table 'magit-reflog-mode-abbrev-table '())
 
@@ -103,9 +117,7 @@
 
 (define-abbrev-table 'occur-mode-abbrev-table '())
 
-(define-abbrev-table 'octave-abbrev-table
-  '(
-   ))
+(define-abbrev-table 'octave-abbrev-table '())
 
 (define-abbrev-table 'octave-mode-abbrev-table '())
 
@@ -147,6 +159,8 @@
 
 (define-abbrev-table 'special-mode-abbrev-table '())
 
+(define-abbrev-table 'speedbar-mode-abbrev-table '())
+
 (define-abbrev-table 'tabulated-list-mode-abbrev-table '())
 
 (define-abbrev-table 'tar-mode-abbrev-table '())
@@ -154,6 +168,8 @@
 (define-abbrev-table 'text-mode-abbrev-table '())
 
 (define-abbrev-table 'textile-mode-abbrev-table '())
+
+(define-abbrev-table 'vc-git-log-edit-mode-abbrev-table '())
 
 (define-abbrev-table 'vc-git-log-view-mode-abbrev-table '())
 

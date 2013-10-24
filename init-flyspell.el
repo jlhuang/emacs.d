@@ -10,7 +10,7 @@
                 ruby-mode-hook
                 yaml-mode
                 python-mode-hook
-                shell-mode-hook
+;;                shell-mode-hook
                 php-mode-hook
                 css-mode-hook
                 haskell-mode-hook
