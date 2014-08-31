@@ -19,7 +19,7 @@ cookies
 /ac-comphist.dat
 \#*
 /elpa
-site-lisp/package/
+site-lisp/*
 /swank
 /TAGS
 /abbrev_defs
